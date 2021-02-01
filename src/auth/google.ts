@@ -14,7 +14,7 @@ const GooglePassportStrategy = new OAuth2Strategy(
   {
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: 'http://localhost:8000/auth/google/callback',
+    callbackURL: 'http://localhost:8000/api/auth/google/callback',
   },
   async function(_token, _tokenSecret, profile, done) {
     const connection = await Connection
