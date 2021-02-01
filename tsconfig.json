@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "experimentalDecorators": true,
     "target": "es6",
     "module": "commonjs",
-    "rootDir": "./src",
-    "outDir": "./build",
+    "rootDir": "./",
+    "outDir": "./dist",
     "esModuleInterop": true,
     "strict": true,
     "strictPropertyInitialization": false
-  }
+  },
+  "exclude": [
+    "./client"
+  ]
 }

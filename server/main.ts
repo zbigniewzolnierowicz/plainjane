@@ -40,31 +40,6 @@ async function main() {
 
     app.use(Routes)
 
-    app.get(
-      '/user',
-      onlyAuthed,
-      (req: Request, res) => {
-        const user = req.user as unknown as User
-        res.send(`
-          <html>
-            <body>
-              <pre>${JSON.stringify(user, null, 2)}</pre>
-              <img src="/avatars/${user.profile}" alt="${user.name}" />
-            </body>
-          </html>
-        `)
-      }
-    )
-
-    app.get('/', (_req, res) => {
-      res.send('yo')
-    })
-
-    app.get('/avatars/:path', async (req: Request<{ path: string }>, res) => {
-      const avatar = await S3.getObject('avatars', req.params.path)
-      avatar.pipe(res)
-    })
-
     if (!S3.bucketExists('avatars')) {
       S3.makeBucket('avatars', 'eu-east-1')
     }
