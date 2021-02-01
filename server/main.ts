@@ -5,9 +5,9 @@ import passport from 'passport'
 import { createClient } from 'redis'
 import connectRedis from 'connect-redis'
 
-import GooglePassportStrategy from './auth/google'
+import GooglePassportStrategy from './services/auth/google'
 import Routes from './routes'
-import { deserialize, serialize } from './auth/serialize'
+import { deserialize, serialize } from './services/auth/serialize'
 import { S3 } from './services/storage'
 import { MINIO, MISC, REDIS } from './consts'
 

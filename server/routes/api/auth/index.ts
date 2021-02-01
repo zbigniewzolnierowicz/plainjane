@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { onlyAuthed } from '../../../auth/guard'
+import { onlyAuthed } from '../../../services/auth/guard'
 
 import GoogleRoutes from './google'
 

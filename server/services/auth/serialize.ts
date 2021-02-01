@@ -1,5 +1,5 @@
-import Connection from '../services/db/connection'
-import { IPublicUser, User } from '../services/db/entity/User'
+import Connection from '../db/connection'
+import { IPublicUser, User } from '../db/entity/User'
 
 const serialize = (user: Express.User, done: (err: Error | null, id?: string) => void): void => {
   done(null, (user as unknown as User).id)
