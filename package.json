@@ -34,7 +34,8 @@
     "react-router-dom": "^5.2.0",
     "redis": "^3.0.2",
     "typeorm": "^0.2.30",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "yn": "^4.0.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.0",

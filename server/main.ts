@@ -9,7 +9,7 @@ import GooglePassportStrategy from './auth/google'
 import Routes from './routes'
 import { deserialize, serialize } from './auth/serialize'
 import { S3 } from './services/storage'
-import { REDIS } from './consts'
+import { MINIO, MISC, REDIS } from './consts'
 
 const app = express()
 const PORT = 8000
@@ -23,7 +23,7 @@ async function main() {
     const RedisStore = connectRedis(session)
 
     app.use(session({
-      secret: 'hocus pocus',
+      secret: MISC.SESSION_SECRET,
       resave: false,
       saveUninitialized: false,
       store: new RedisStore({ client: redisClient }),
@@ -38,9 +38,11 @@ async function main() {
 
     app.use(Routes)
 
-    if (!S3.bucketExists('avatars')) {
-      S3.makeBucket('avatars', 'eu-east-1')
-    }
+    Object.entries(MINIO.BUCKETS).forEach(bucket => {
+      if (!S3.bucketExists(bucket[0])) {
+        S3.makeBucket(bucket[1], MINIO.REGION)
+      }
+    })
 
     app.listen(PORT, () => {
       console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`)

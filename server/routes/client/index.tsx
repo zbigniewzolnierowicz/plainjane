@@ -13,7 +13,6 @@ const router = Router()
 
 const clientPath = path.join(__dirname, '../../..', 'dist', 'client')
 
-// The path is relative from server bundle to client bundle, not the source
 const templatePath = path.join(clientPath, 'index.html')
 const HTML_TEMPLATE = fs.readFileSync(templatePath).toString()
 
@@ -24,7 +23,6 @@ router.get('/*', (req, res) => {
   const router = <StaticRouter location={req.originalUrl} context={context}><App /></StaticRouter>
   const markup = ReactDOM.renderToString(router)
 
-  // If react-router is redirecting, do it on the server side
   if (context.url) {
     res.redirect(301, context.url)
   } else {
