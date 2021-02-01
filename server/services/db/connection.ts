@@ -11,18 +11,18 @@ const Connection = createConnection({
   synchronize: process.env.NODE_ENV !== 'production',
   logging: false,
   entities: [
-    'src/services/db/entity/**/*.ts'
+    'server/services/db/entity/**/*.ts'
   ],
   migrations: [
-    'src/services/db/migration/**/*.ts'
+    'server/services/db/migration/**/*.ts'
   ],
   subscribers: [
-    'src/services/db/subscriber/**/*.ts'
+    'server/services/db/subscriber/**/*.ts'
   ],
   cli: {
-    entitiesDir: 'src/services/db/entity',
-    migrationsDir: 'src/services/db/migration',
-    subscribersDir: 'src/services/db/subscriber'
+    entitiesDir: 'server/services/db/entity',
+    migrationsDir: 'server/services/db/migration',
+    subscribersDir: 'server/services/db/subscriber'
   }
 }
 )
