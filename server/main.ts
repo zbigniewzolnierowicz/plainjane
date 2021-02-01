@@ -1,4 +1,4 @@
-import express, { Request } from 'express'
+import express from 'express'
 import session from 'express-session'
 import cookieParser from 'cookie-parser'
 import passport from 'passport'
@@ -8,10 +8,8 @@ import connectRedis from 'connect-redis'
 import GooglePassportStrategy from './auth/google'
 import Routes from './routes'
 import { deserialize, serialize } from './auth/serialize'
-import { onlyAuthed } from './auth/guard'
 import { S3 } from './services/storage'
 import { REDIS } from './consts'
-import { User } from './services/db/entity/User'
 
 const app = express()
 const PORT = 8000
