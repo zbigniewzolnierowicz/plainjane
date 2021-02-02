@@ -27,11 +27,13 @@ export const REDIS: IExternalServiceConnectionData = {
   PORT: parseInt(process.env.REDIS_PORT ?? '6379')
 }
 
+type MinioBuckets = 'avatars'
+
 export interface IMinioData {
   ACCESS_KEY: string
   SECRET_KEY: string
   REGION: string
-  BUCKETS: Record<string, string>
+  BUCKETS: Record<MinioBuckets, string>
   USE_SSL: boolean
 }
 

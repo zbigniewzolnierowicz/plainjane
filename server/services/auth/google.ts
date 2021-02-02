@@ -6,6 +6,7 @@ import { v4 } from 'uuid'
 
 import getEnv from '../../utils/getEnv'
 import { S3 } from '../storage'
+import { MINIO } from '../../consts'
 
 const GOOGLE_CLIENT_ID = getEnv('GOOGLE_CLIENT_ID')
 const GOOGLE_CLIENT_SECRET = getEnv('GOOGLE_CLIENT_SECRET')
@@ -31,7 +32,7 @@ const GooglePassportStrategy = new OAuth2Strategy(
       if (profile.photos) {
         const photo = await fetch(profile.photos[0].value).then(res => res.buffer())
         const id = v4()
-        await S3.putObject('avatars', id, photo)
+        await S3.putObject(MINIO.BUCKETS.avatars, id, photo)
         potentialUser.profile = id
       }
       potentialUser = await userRepository.save(potentialUser)
