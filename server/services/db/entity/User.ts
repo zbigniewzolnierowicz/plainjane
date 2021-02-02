@@ -22,7 +22,7 @@ export class User implements IPublicUser {
   @Column({ type: 'varchar' })
   name: string
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', unique: true })
   nickname: string
 
   @Column({ nullable: true, type: 'varchar' })
