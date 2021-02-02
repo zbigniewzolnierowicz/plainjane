@@ -38,10 +38,12 @@ async function main() {
 
     app.use(Routes)
 
-    Object.entries(MINIO.BUCKETS).forEach(bucket => {
-      if (!S3.bucketExists(bucket[0])) {
-        S3.makeBucket(bucket[1], MINIO.REGION)
-      }
+    Object.entries(MINIO.BUCKETS).forEach(([_bucketKey, bucketName]) => {
+      S3.bucketExists(bucketName).then(bucketExists => {
+        if (!bucketExists) {
+          S3.makeBucket(bucketName, MINIO.REGION)
+        }
+      })
     })
 
     app.listen(PORT, () => {
