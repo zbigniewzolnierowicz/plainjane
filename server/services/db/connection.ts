@@ -1,8 +1,5 @@
 import { createConnection } from 'typeorm'
-import { POSTGRES } from '../../consts'
-
-const typeOrmDir = process.env.NODE_ENV === 'production' ? 'dist/server/services/db' : 'server/services/db'
-const typeOrmFileExtension = process.env.NODE_ENV === 'production' ? 'js' : 'ts'
+import { MISC, POSTGRES } from '../../consts'
 
 const Connection = createConnection({
   type: 'postgres',
@@ -14,18 +11,18 @@ const Connection = createConnection({
   synchronize: process.env.NODE_ENV !== 'production',
   logging: false,
   entities: [
-    `${typeOrmDir}/entity/**/*.${typeOrmFileExtension}`
+    `${MISC.TYPEORM.BASE_DIRECTORY}/entity/**/*.${MISC.TYPEORM.FILE_EXTENSION}`
   ],
   migrations: [
-    `${typeOrmDir}/migration/**/*.${typeOrmFileExtension}`
+    `${MISC.TYPEORM.BASE_DIRECTORY}/migration/**/*.${MISC.TYPEORM.FILE_EXTENSION}`
   ],
   subscribers: [
-    `${typeOrmDir}/subscriber/**/*.${typeOrmFileExtension}`
+    `${MISC.TYPEORM.BASE_DIRECTORY}/subscriber/**/*.${MISC.TYPEORM.FILE_EXTENSION}`
   ],
   cli: {
-    entitiesDir: `${typeOrmDir}/entity`,
-    migrationsDir: `${typeOrmDir}/migration`,
-    subscribersDir: `${typeOrmDir}/subscriber`
+    entitiesDir: `${MISC.TYPEORM.BASE_DIRECTORY}/entity`,
+    migrationsDir: `${MISC.TYPEORM.BASE_DIRECTORY}/migration`,
+    subscribersDir: `${MISC.TYPEORM.BASE_DIRECTORY}/subscriber`
   }
 }
 )

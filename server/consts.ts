@@ -50,5 +50,9 @@ export const MINIO: IExternalServiceConnectionData & IMinioData = {
 }
 
 export const MISC = {
-  SESSION_SECRET: process.env.SESSION_SECRET || 'hocus pocus'
+  SESSION_SECRET: process.env.SESSION_SECRET || 'hocus pocus',
+  TYPEORM: {
+    BASE_DIRECTORY: process.env.NODE_ENV === 'production' ? 'dist/server/services/db' : 'server/services/db',
+    FILE_EXTENSION: process.env.NODE_ENV === 'production' ? 'js' : 'ts'
+  }
 }
