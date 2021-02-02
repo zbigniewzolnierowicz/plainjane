@@ -39,7 +39,7 @@ export interface IMinioData {
 
 export const MINIO: IExternalServiceConnectionData & IMinioData = {
   HOST: process.env.MINIO_HOST || 'localhost',
-  PORT: parseInt(process.env.MINIO_POST || '9000'),
+  PORT: parseInt(process.env.MINIO_PORT || '9000'),
   ACCESS_KEY: process.env.MINIO_ACCESS_KEY || 'minio',
   SECRET_KEY: process.env.MINIO_SECRET_KEY || 'minio123',
   REGION: process.env.MINIO_REGION || 'eu-east-1',

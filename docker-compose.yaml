@@ -1,5 +1,17 @@
 version: "3.9"
 services:
+  server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: plainjane/server:latest
+    ports:
+      - 8000:8000
+    environment:
+      MINIO_USE_SSL: "false"
+      MINIO_HOST: "minio"
+      POSTGRES_HOST: "db"
+      REDIS_HOST: "redis"
   db:
     image: postgres:alpine
     volumes:
@@ -9,7 +21,7 @@ services:
     environment:
       POSTGRES_DB: plainjane
       POSTGRES_PASSWORD: postgres
-  minio1:
+  minio:
     image: minio/minio
     volumes:
       - storageData:/data

@@ -11,7 +11,7 @@ import App from '../../../client/App'
 
 const router = Router()
 
-const clientPath = path.join(__dirname, '../../..', 'dist', 'client')
+const clientPath = path.join(__dirname, '../../..', process.env.NODE_ENV === 'production' ? '' : 'dist', 'client')
 
 const templatePath = path.join(clientPath, 'index.html')
 const HTML_TEMPLATE = fs.readFileSync(templatePath).toString()

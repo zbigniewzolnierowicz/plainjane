@@ -1,6 +1,9 @@
 import { createConnection } from 'typeorm'
 import { POSTGRES } from '../../consts'
 
+const typeOrmDir = process.env.NODE_ENV === 'production' ? 'dist/server/services/db' : 'server/services/db'
+const typeOrmFileExtension = process.env.NODE_ENV === 'production' ? 'js' : 'ts'
+
 const Connection = createConnection({
   type: 'postgres',
   host: POSTGRES.HOST,
@@ -11,18 +14,18 @@ const Connection = createConnection({
   synchronize: process.env.NODE_ENV !== 'production',
   logging: false,
   entities: [
-    'server/services/db/entity/**/*.ts'
+    `${typeOrmDir}/entity/**/*.${typeOrmFileExtension}`
   ],
   migrations: [
-    'server/services/db/migration/**/*.ts'
+    `${typeOrmDir}/migration/**/*.${typeOrmFileExtension}`
   ],
   subscribers: [
-    'server/services/db/subscriber/**/*.ts'
+    `${typeOrmDir}/subscriber/**/*.${typeOrmFileExtension}`
   ],
   cli: {
-    entitiesDir: 'server/services/db/entity',
-    migrationsDir: 'server/services/db/migration',
-    subscribersDir: 'server/services/db/subscriber'
+    entitiesDir: `${typeOrmDir}/entity`,
+    migrationsDir: `${typeOrmDir}/migration`,
+    subscribersDir: `${typeOrmDir}/subscriber`
   }
 }
 )
