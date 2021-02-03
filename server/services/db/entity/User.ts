@@ -1,7 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 export interface IPublicUser {
-  id: string
   name: string
   nickname: string
   email?: string
