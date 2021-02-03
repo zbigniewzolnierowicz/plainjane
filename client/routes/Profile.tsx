@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 import useSWR from 'swr'
 
 import { IPublicUser } from '../../shared/PublicUser'
-import { IError } from '../../shared/Error'
+import { IError, IMessage } from '../../shared/Message'
 import axios, { AxiosError } from 'axios'
 // import fetcher from '../utils/fetcher'
 
@@ -14,7 +14,7 @@ interface IProfilePathParams {
 const Profile: React.FC = () => {
   const { nickname } = useParams<IProfilePathParams>()
   const userDataPath = nickname ? `/api/auth/user/${nickname}` : '/api/auth/user'
-  const userData = useSWR<IPublicUser, IError>(userDataPath, (url) => axios.get(url).then(data => data.data).catch((err: AxiosError) => { throw err.response?.data }))
+  const userData = useSWR<IMessage<IPublicUser>, IError>(userDataPath, (url) => axios.get(url).then(data => data.data).catch((err: AxiosError) => { throw err.response?.data }))
   return (
     <div>
       <h1>User Data</h1>

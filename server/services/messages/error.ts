@@ -1,4 +1,4 @@
-import { ErrorRepository } from '../../../shared/Error'
+import { ErrorRepository } from '../../../shared/Message'
 
 export const ERRORS: ErrorRepository = {
   auth: {
@@ -21,3 +21,5 @@ export const ERRORS: ErrorRepository = {
     }
   }
 }
+
+export default ERRORS
