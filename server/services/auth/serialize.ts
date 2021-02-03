@@ -1,3 +1,4 @@
+import { obfuscateUser } from '../../utils/obfuscateUser'
 import Connection from '../db/connection'
 import { IPublicUser, User } from '../db/entity/User'
 
@@ -13,11 +14,11 @@ const deserialize = async (id: string, done: (err: Error | null, user?: Express.
   const connection = await Connection
   const userRepository = connection.getRepository(User)
   const user = (await userRepository.findByIds([ id ]))[0]
-  const obfuscatedUser: IPublicUser = { name: user.name, nickname: user.nickname, email: user.email, profile: user.profile }
+  const obfuscatedUser: IPublicUser = obfuscateUser(user)
   done(null, obfuscatedUser)
 }
 
 export {
   serialize,
-  deserialize
+  deserialize,
 }
