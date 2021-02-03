@@ -3,35 +3,35 @@ interface IBaseMessage<T> {
   message: string
 }
 
-type AuthMessages = 'user_authenticated'
-type UserMessages = 'user_found'
+export type AuthMessages = 'user_authenticated'
+export type UserMessages = 'user_found'
 
 export interface IMessage<T = never> extends IBaseMessage<AuthMessages | UserMessages> {
   status: 200
   content?: T
 }
 
-type AuthMessageRepository = Record<
+export type AuthMessageRepository = Record<
   'auth',
   Record<AuthMessages, IMessage>
 >
 
-type UserMessageRepository = Record<
+export type UserMessageRepository = Record<
   'users',
   Record<UserMessages, IMessage>
 >
 
 export type MessageRepository = AuthMessageRepository & UserMessageRepository
 
-type AuthErrors = 'user_not_authenticated'
-type UserErrors = 'same_nickname_multiple_users' | 'user_not_found'
+export type AuthErrors = 'user_not_authenticated'
+export type UserErrors = 'same_nickname_multiple_users' | 'user_not_found'
 
-type AuthErrorRepository = Record<
+export type AuthErrorRepository = Record<
   'auth',
   Record<AuthErrors, IError>
 >
 
-type UserErrorRepository = Record<
+export type UserErrorRepository = Record<
   'users',
   Record<UserErrors, IError>
 >
