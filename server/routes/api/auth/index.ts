@@ -32,11 +32,13 @@ router
       const userRepository = connection.getRepository(User)
       const users: User[] = await userRepository.find({ where: { nickname: req.params.nickname } })
       if (users.length == 1) {
-        const user = users[0]
+        const [user] = users
         const formattedUser: IPublicUser = obfuscateUser(user)
         res
           .status(MESSAGES.users.user_found.status)
-          .json(formatMessage(MESSAGES.users.user_found, formattedUser))
+          .json(
+            formatMessage(MESSAGES.users.user_found, formattedUser)
+          )
           .end()
       } else if (users.length > 1) {
         res
