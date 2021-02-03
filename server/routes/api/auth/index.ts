@@ -1,8 +1,10 @@
 import { Request, Response, Router } from 'express'
+import { IError } from '../../../../shared/Error'
+import { IPublicUser } from '../../../../shared/PublicUser'
 import { onlyAuthed } from '../../../guards/auth'
 import Connection from '../../../services/db/connection'
-import { IPublicUser, User } from '../../../services/db/entity/User'
-import { ERRORS, IError } from '../../../services/error'
+import { User } from '../../../services/db/entity/User'
+import { ERRORS } from '../../../services/error'
 import obfuscateUser from '../../../utils/obfuscateUser'
 
 import GoogleRoutes from './google'
@@ -12,7 +14,7 @@ const router = Router()
 router.use('/google', GoogleRoutes)
 
 router
-  .get('/profile',
+  .get('/user',
     onlyAuthed,
     (req, res) => {
       res.json(req.user).end()

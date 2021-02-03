@@ -1,11 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
-
-export interface IPublicUser {
-  name: string
-  nickname: string
-  email?: string
-  profile?: string
-}
+import { IPublicUser } from '../../../../shared/PublicUser'
 
 @Entity()
 export class User implements IPublicUser {

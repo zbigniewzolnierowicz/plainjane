@@ -7,14 +7,15 @@
     "start": "cross-env NODE_ENV=production node dist/server/main.js",
     "dev": "npm-run-all --parallel dev:client dev:server",
     "dev:server": "ts-node-dev server/main.ts",
-    "dev:client": "parcel watch client/index.html -d dist/client --public-url ./dist/",
+    "dev:client": "parcel watch client/index.html -d dist/client --public-url /dist/",
     "build": "npm-run-all build:server build:client",
     "build:server": "cross-env NODE_ENV=production tsc",
-    "build:client": "cross-env NODE_ENV=production parcel build client/index.html -d dist/client --public-url ./dist/",
+    "build:client": "cross-env NODE_ENV=production parcel build client/index.html -d dist/client --public-url /dist/",
     "lint": "eslint --fix \"**/*.{ts,tsx}\"",
     "depcheck": "depcheck --ignores=\"@types/*,body-parser,pg,ts-node,depcheck\" --ignore-patterns=build/*,node_modules"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.5",
     "connect-redis": "^5.0.0",
@@ -33,6 +34,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "redis": "^3.0.2",
+    "swr": "^0.4.1",
     "typeorm": "^0.2.30",
     "uuid": "^8.3.2",
     "yn": "^4.0.0"

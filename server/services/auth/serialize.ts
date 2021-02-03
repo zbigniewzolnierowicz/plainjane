@@ -1,6 +1,7 @@
+import { IPublicUser } from '../../../shared/PublicUser'
 import { obfuscateUser } from '../../utils/obfuscateUser'
 import Connection from '../db/connection'
-import { IPublicUser, User } from '../db/entity/User'
+import { User } from '../db/entity/User'
 
 const serialize = async (expressUser: Express.User, done: (err: Error | null, id?: string) => void): Promise<void> => {
   const user = expressUser as unknown as IPublicUser
