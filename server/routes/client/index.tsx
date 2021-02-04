@@ -6,6 +6,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { StaticRouterContext } from 'react-router'
+import Helmet from 'react-helmet'
 
 import App from '../../../client/App'
 
@@ -27,7 +28,11 @@ router.get('/*', (req, res) => {
     res.redirect(301, context.url)
   } else {
     const $template = cheerio.load(HTML_TEMPLATE)
+    const helmet = Helmet.renderStatic()
     $template('#app').html(markup)
+    $template('body').attr(helmet.bodyAttributes.toString())
+    $template('html').attr(helmet.htmlAttributes.toString())
+    $template('head').append(helmet.title.toString(), helmet.meta.toString(), helmet.link.toString())
     const html = $template.html()
     res.send(html)
   }
