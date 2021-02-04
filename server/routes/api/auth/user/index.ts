@@ -4,7 +4,7 @@ import { IMessage, IError } from '../../../../../shared/Message'
 import { IPublicUser } from '../../../../../shared/PublicUser'
 import { onlyAuthed } from '../../../../guards/auth'
 import { User } from '../../../../services/db/entity/User'
-import { MESSAGES, formatMessage, ERRORS } from '../../../../services/messages'
+import { MESSAGES, formatMessage, ERRORS } from '../../../../services/communication'
 import obfuscateUser from '../../../../utils/obfuscateUser'
 
 const router = Router()
