@@ -17,5 +17,5 @@ export const MESSAGES: MessageRepository = {
 }
 
 export {
-  formatMessage
+  formatMessage,
 }

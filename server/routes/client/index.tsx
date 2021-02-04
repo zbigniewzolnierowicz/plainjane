@@ -32,7 +32,14 @@ router.get('/*', (req, res) => {
     $template('#app').html(markup)
     $template('body').attr(helmet.bodyAttributes.toString())
     $template('html').attr(helmet.htmlAttributes.toString())
-    $template('head').append(helmet.title.toString(), helmet.meta.toString(), helmet.link.toString())
+    $template('head').append(
+      helmet.title.toString(),
+      helmet.meta.toString(),
+      helmet.link.toString(),
+      helmet.noscript.toString(),
+      helmet.script.toString(),
+      helmet.base.toString(),
+    )
     const html = $template.html()
     res.send(html)
   }

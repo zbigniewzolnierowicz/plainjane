@@ -35,6 +35,10 @@
     "@typescript-eslint/no-unused-vars": [
       "warn",
       { "argsIgnorePattern": "^_" }
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
     ]
   }
 }
