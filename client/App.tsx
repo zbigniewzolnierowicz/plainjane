@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import GlobalStyle from './style/global'
 
 const Wrapper = styled.div`
-  color: red;
+  color: rgba(0 100 100 / 100%);
 `
 
 const Root = () => {
