@@ -3,6 +3,7 @@ import Connection from '../db/connection'
 import { User } from '../db/entity/User'
 import fetch from 'node-fetch'
 import { v4 } from 'uuid'
+import { fromBuffer } from 'file-type'
 
 import getEnv from '../../utils/getEnv'
 import { S3 } from '../storage'
@@ -31,9 +32,10 @@ const GooglePassportStrategy = new OAuth2Strategy(
       potentialUser.email = profile.emails?.[0].value
       if (profile.photos) {
         const photo = await fetch(profile.photos[0].value).then(res => res.buffer())
-        const id = v4()
-        await S3.putObject(MINIO.BUCKETS.avatars, id, photo)
-        potentialUser.profile = id
+        const fileType = await fromBuffer(photo)
+        const profilePhotoFileName = `${v4()}.${fileType?.ext || 'png'}`
+        await S3.putObject(MINIO.BUCKETS.avatars, profilePhotoFileName, photo)
+        potentialUser.profile = profilePhotoFileName
       }
       potentialUser = await userRepository.save(potentialUser)
     }
