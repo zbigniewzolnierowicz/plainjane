@@ -2,26 +2,35 @@ import * as React from 'react'
 import { Route, Switch } from 'react-router'
 import Profile from './routes/Profile'
 import Helmet from 'react-helmet'
+import styled from 'styled-components'
+import GlobalStyle from './style/global'
+
+const Wrapper = styled.div`
+  color: red;
+`
 
 const Root = () => {
   return (
-    <div>
+    <Wrapper>
       <Helmet>
         <html lang="en" />
         <title>EEEEEEEE</title>
       </Helmet>
       <p>EEEEEEEEE</p>
-    </div>
+    </Wrapper>
   )
 }
 
 const App: React.FC = () => {
   return (
-    <Switch>
-      <Route exact path="/user/" component={Profile} />
-      <Route path="/user/:nickname" component={Profile} />
-      <Route path="/" component={Root} />
-    </Switch>
+    <>
+      <GlobalStyle />
+      <Switch>
+        <Route exact path="/user/" component={Profile} />
+        <Route path="/user/:nickname" component={Profile} />
+        <Route path="/" component={Root} />
+      </Switch>
+    </>
   )
 }
 

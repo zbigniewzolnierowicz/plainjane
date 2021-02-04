@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { StaticRouterContext } from 'react-router'
 import Helmet from 'react-helmet'
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
 import App from '../../../client/App'
 
@@ -21,12 +22,22 @@ router.use('/dist', express.static(path.join(clientPath)))
 
 router.get('/*', (req, res) => {
   const context: StaticRouterContext = {}
-  const router = <StaticRouter location={req.originalUrl} context={context}><App /></StaticRouter>
-  const markup = ReactDOM.renderToString(router)
+  const sheet = new ServerStyleSheet()
+
+  const router = (
+    <StyleSheetManager sheet={sheet.instance}>
+      <StaticRouter location={req.originalUrl} context={context}>
+        <App />
+      </StaticRouter>
+    </StyleSheetManager>
+  )
+  const markup = ReactDOM.renderToString(sheet.collectStyles(router))
+  const styleTags = sheet.getStyleTags()
 
   if (context.url) {
     res.redirect(301, context.url)
   } else {
+    sheet.seal()
     const $template = cheerio.load(HTML_TEMPLATE)
     const helmet = Helmet.renderStatic()
     $template('#app').html(markup)
@@ -39,6 +50,7 @@ router.get('/*', (req, res) => {
       helmet.noscript.toString(),
       helmet.script.toString(),
       helmet.base.toString(),
+      styleTags,
     )
     const html = $template.html()
     res.send(html)
