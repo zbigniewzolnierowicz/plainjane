@@ -3,5 +3,5 @@ import AuthMessageRepository from './messages'
 
 export {
   AuthErrorRepository,
-  AuthMessageRepository as AuthMessageRepository
+  AuthMessageRepository as AuthMessageRepository,
 }

@@ -14,7 +14,7 @@ router
     (req, res) => {
       req.logOut()
       res.status(200).end()
-    }
+    },
   )
 
 export default router

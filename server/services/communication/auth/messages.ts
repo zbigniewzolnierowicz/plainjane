@@ -5,7 +5,7 @@ const AuthMessageRepository: Record<AuthMessages, IMessage> = {
     title: 'user_authenticated',
     message: 'User has been authenticated.',
     status: 200,
-  }
+  },
 }
 
 export default AuthMessageRepository

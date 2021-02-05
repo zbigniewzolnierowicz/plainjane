@@ -17,7 +17,7 @@ router
         .status(MESSAGES.users.user_found.status)
         .json(formatMessage(MESSAGES.users.user_found, req.user))
         .end()
-    }
+    },
   )
 
 router
@@ -33,7 +33,7 @@ router
         res
           .status(MESSAGES.users.user_found.status)
           .json(
-            formatMessage(MESSAGES.users.user_found, formattedUser)
+            formatMessage(MESSAGES.users.user_found, formattedUser),
           )
           .end()
       } else if (users.length > 1) {
@@ -47,7 +47,7 @@ router
           .json(ERRORS.users.user_not_found)
           .end()
       }
-    }
+    },
   )
 
 

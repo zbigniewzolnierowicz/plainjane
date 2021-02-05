@@ -41,7 +41,7 @@ const GooglePassportStrategy = new OAuth2Strategy(
     }
 
     done(null, potentialUser)
-  }
+  },
 )
 
 export default GooglePassportStrategy

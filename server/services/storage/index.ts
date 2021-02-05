@@ -7,9 +7,9 @@ const S3 = new Client({
   accessKey: MINIO.ACCESS_KEY,
   secretKey: MINIO.SECRET_KEY,
   region: MINIO.REGION,
-  useSSL: false
+  useSSL: false,
 })
 
 export {
-  S3
+  S3,
 }

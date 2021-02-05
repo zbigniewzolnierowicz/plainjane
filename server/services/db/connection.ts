@@ -11,20 +11,20 @@ const Connection = createConnection({
   synchronize: process.env.NODE_ENV !== 'production',
   logging: false,
   entities: [
-    `${MISC.TYPEORM.BASE_DIRECTORY}/entity/**/*.${MISC.TYPEORM.FILE_EXTENSION}`
+    `${MISC.TYPEORM.BASE_DIRECTORY}/entity/**/*.${MISC.TYPEORM.FILE_EXTENSION}`,
   ],
   migrations: [
-    `${MISC.TYPEORM.BASE_DIRECTORY}/migration/**/*.${MISC.TYPEORM.FILE_EXTENSION}`
+    `${MISC.TYPEORM.BASE_DIRECTORY}/migration/**/*.${MISC.TYPEORM.FILE_EXTENSION}`,
   ],
   subscribers: [
-    `${MISC.TYPEORM.BASE_DIRECTORY}/subscriber/**/*.${MISC.TYPEORM.FILE_EXTENSION}`
+    `${MISC.TYPEORM.BASE_DIRECTORY}/subscriber/**/*.${MISC.TYPEORM.FILE_EXTENSION}`,
   ],
   cli: {
     entitiesDir: `${MISC.TYPEORM.BASE_DIRECTORY}/entity`,
     migrationsDir: `${MISC.TYPEORM.BASE_DIRECTORY}/migration`,
-    subscribersDir: `${MISC.TYPEORM.BASE_DIRECTORY}/subscriber`
-  }
-}
+    subscribersDir: `${MISC.TYPEORM.BASE_DIRECTORY}/subscriber`,
+  },
+},
 )
 
 export default Connection

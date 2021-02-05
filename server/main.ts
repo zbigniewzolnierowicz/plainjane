@@ -18,7 +18,7 @@ async function main() {
   try {
     const redisClient = createClient({
       host: REDIS.HOST,
-      port: REDIS.PORT
+      port: REDIS.PORT,
     })
     const RedisStore = connectRedis(session)
 

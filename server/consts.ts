@@ -24,7 +24,7 @@ export const POSTGRES: IExternalServiceConnectionData & IPostgresData = {
 
 export const REDIS: IExternalServiceConnectionData = {
   HOST: process.env.REDIS_HOST || 'localhost',
-  PORT: parseInt(process.env.REDIS_PORT ?? '6379')
+  PORT: parseInt(process.env.REDIS_PORT ?? '6379'),
 }
 
 type MinioBuckets = 'avatars'
@@ -44,15 +44,15 @@ export const MINIO: IExternalServiceConnectionData & IMinioData = {
   SECRET_KEY: process.env.MINIO_SECRET_KEY || 'minio123',
   REGION: process.env.MINIO_REGION || 'eu-east-1',
   BUCKETS: {
-    avatars: 'avatars'
+    avatars: 'avatars',
   },
-  USE_SSL: yn(process.env.MINIO_USE_SSL || true, { default: false, lenient: true })
+  USE_SSL: yn(process.env.MINIO_USE_SSL || true, { default: false, lenient: true }),
 }
 
 export const MISC = {
   SESSION_SECRET: process.env.SESSION_SECRET || 'hocus pocus',
   TYPEORM: {
     BASE_DIRECTORY: process.env.NODE_ENV === 'production' ? 'dist/server/services/db' : 'server/services/db',
-    FILE_EXTENSION: process.env.NODE_ENV === 'production' ? 'js' : 'ts'
-  }
+    FILE_EXTENSION: process.env.NODE_ENV === 'production' ? 'js' : 'ts',
+  },
 }
