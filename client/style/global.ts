@@ -6,6 +6,10 @@ const GlobalStyle = createGlobalStyle`
   }
   html, body {
     margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  body {
+    background: skyblue;
   }
 `
 
