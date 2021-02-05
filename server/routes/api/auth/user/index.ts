@@ -8,14 +8,16 @@ import { MESSAGES, formatMessage, ERRORS } from '../../../../services/communicat
 import obfuscateUser from '../../../../utils/obfuscateUser'
 
 const router = Router()
+const LOCAL_ERRORS = ERRORS.users
+const LOCAL_MESSAGES = MESSAGES.users
 
 router
   .get('/',
     onlyAuthed,
     (req, res) => {
       res
-        .status(MESSAGES.users.user_found.status)
-        .json(formatMessage(MESSAGES.users.user_found, req.user))
+        .status(LOCAL_MESSAGES.user_found.status)
+        .json(formatMessage(LOCAL_MESSAGES.user_found, req.user))
         .end()
     },
   )
@@ -30,21 +32,24 @@ router
       if (users.length == 1) {
         const [user] = users
         const formattedUser: IPublicUser = obfuscateUser(user)
+        const message = LOCAL_MESSAGES.user_found
         res
-          .status(MESSAGES.users.user_found.status)
+          .status(message.status)
           .json(
-            formatMessage(MESSAGES.users.user_found, formattedUser),
+            formatMessage(message, formattedUser),
           )
           .end()
       } else if (users.length > 1) {
+        const error = LOCAL_ERRORS.same_nickname_multiple_users
         res
-          .status(ERRORS.users.same_nickname_multiple_users.status)
-          .json(ERRORS.users.same_nickname_multiple_users)
+          .status(error.status)
+          .json(error)
           .end()
       } else {
+        const error = LOCAL_ERRORS.user_not_found
         res
-          .status(ERRORS.users.user_not_found.status)
-          .json(ERRORS.users.user_not_found)
+          .status(error.status)
+          .json(error)
           .end()
       }
     },
