@@ -1,12 +1,5 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
-async function fetcher <TData>(url: string): Promise<TData> {
-  try {
-    const res = await axios.get<TData>(url)
-    return res.data
-  } catch (err) {
-    throw err.response?.data
-  }
-}
+const fetcher = <TData>(url: string): Promise<TData> => axios.get<TData>(url).then(data => data.data).catch((err: AxiosError<TData>) => { throw err.response?.data })
 
 export default fetcher
