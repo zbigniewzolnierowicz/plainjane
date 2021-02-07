@@ -12,6 +12,9 @@ export class User implements IPublicUser {
   @Column({ nullable: true, type: 'varchar' })
   twitterId?: string
 
+  @Column({ nullable: true, type: 'varchar' })
+  password?: string
+
   @Column({ type: 'varchar' })
   name: string
 
