@@ -1,7 +1,6 @@
 FROM node:15
 
 ARG PORT=8000
-ARG NODE_ENV='production'
 
 ENV PORT=${PORT}
 ENV NODE_ENV=${NODE_ENV}
@@ -14,6 +13,8 @@ COPY yarn.lock ./
 RUN yarn install
 
 COPY . .
+
+ARG NODE_ENV='production'
 
 RUN yarn run build:client
 RUN yarn run build:server

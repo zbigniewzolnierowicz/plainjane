@@ -16,8 +16,8 @@
     "dev:server": "ts-node-dev server/main.ts",
     "dev:client": "parcel watch client/index.html",
     "build": "npm-run-all build:server build:client",
-    "build:server": "cross-env NODE_ENV=production tsc",
-    "build:client": "cross-env NODE_ENV=production parcel build client/index.html",
+    "build:server": "tsc",
+    "build:client": "parcel build client/index.html",
     "lint": "eslint --fix \"**/*.{ts,tsx}\"",
     "depcheck": "depcheck --ignores=\"@types/*,body-parser,pg,ts-node,depcheck\" --ignore-patterns=build/*,node_modules"
   },

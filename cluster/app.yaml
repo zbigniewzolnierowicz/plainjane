@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plainjane-server
+  labels:
+    app: plainjane-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plainjane-server
+  template:
+    metadata:
+      labels:
+        app: plainjane-server
+    spec:
+      containers:
+        - name: plainjane-server
+          image: zedisnotdead/plainjane-server:latest
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plainjane-server
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8090
+      targetPort: 8000
+  selector:
+    app: plainjane-server
