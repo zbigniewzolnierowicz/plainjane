@@ -24,7 +24,7 @@ export type UserMessageRepository = Record<
 export type MessageRepository = AuthMessageRepository & UserMessageRepository
 
 export type AuthErrors = 'user_not_authenticated'
-export type UserErrors = 'same_nickname_multiple_users' | 'user_not_found'
+export type UserErrors = 'same_nickname_multiple_users' | 'user_not_found' | 'incorrect_password'
 
 export type AuthErrorRepository = Record<
   'auth',

@@ -11,6 +11,11 @@ const UserErrorRepository: Record<UserErrors, IError> = {
     message: 'User with the following nickname was not found.',
     status: 404,
   },
+  incorrect_password: {
+    title: 'incorrect_password',
+    message: 'Incorrect password.',
+    status: 403,
+  },
 }
 
 export default UserErrorRepository

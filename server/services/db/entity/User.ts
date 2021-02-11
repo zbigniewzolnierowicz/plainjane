@@ -1,4 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { hash } from 'argon2'
+
 import { IPublicUser } from '../../../../shared/PublicUser'
 
 @Entity()
@@ -35,5 +37,18 @@ export class User implements IPublicUser {
       profile,
       email,
     }
+  }
+
+  constructor(partialUser: Partial<User>) {
+    const { password: unhashedPassword, ...data } = partialUser
+    let password: string | undefined
+    if (unhashedPassword) {
+      hash(unhashedPassword).then(hashedPassword => {
+        password = hashedPassword
+      })
+    } else {
+      password = undefined
+    }
+    Object.assign(this, { ...data, password })
   }
 }

@@ -25,11 +25,12 @@ const GooglePassportStrategy = new OAuth2Strategy(
     let potentialUser = await userRepository.findOne({ where: { googleId: profile.id } })
     if (typeof potentialUser === 'undefined') {
       const generatedNickname = (await import('random-words')).default(3) as string[]
-      potentialUser = new User()
-      potentialUser.googleId = profile.id
-      potentialUser.name = profile.displayName
-      potentialUser.nickname = generatedNickname.join('-')
-      potentialUser.email = profile.emails?.[0].value
+      potentialUser = new User({
+        googleId: profile.id,
+        name: profile.displayName,
+        nickname: generatedNickname.join('-'),
+        email: profile.emails?.[0].value,
+      })
       if (profile.photos) {
         const photo = await fetch(profile.photos[0].value).then(res => res.buffer())
         const fileType = await fromBuffer(photo)
