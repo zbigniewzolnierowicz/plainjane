@@ -1,6 +1,10 @@
 import { createConnection } from 'typeorm'
 import { MISC, POSTGRES } from '@server/consts'
 
+const entitiesDir = `${MISC.TYPEORM.BASE_DIRECTORY}/entity`
+const migrationsDir = `${MISC.TYPEORM.BASE_DIRECTORY}/migration`
+const subscribersDir = `${MISC.TYPEORM.BASE_DIRECTORY}/subscriber`
+
 const Connection = createConnection({
   type: 'postgres',
   host: POSTGRES.HOST,
@@ -11,18 +15,18 @@ const Connection = createConnection({
   synchronize: process.env.NODE_ENV !== 'production',
   logging: false,
   entities: [
-    `${MISC.TYPEORM.BASE_DIRECTORY}/entity/**/*.${MISC.TYPEORM.FILE_EXTENSION}`,
+    `${entitiesDir}/**/*.${MISC.TYPEORM.FILE_EXTENSION}`,
   ],
   migrations: [
-    `${MISC.TYPEORM.BASE_DIRECTORY}/migration/**/*.${MISC.TYPEORM.FILE_EXTENSION}`,
+    `${migrationsDir}/**/*.${MISC.TYPEORM.FILE_EXTENSION}`,
   ],
   subscribers: [
-    `${MISC.TYPEORM.BASE_DIRECTORY}/subscriber/**/*.${MISC.TYPEORM.FILE_EXTENSION}`,
+    `${subscribersDir}/**/*.${MISC.TYPEORM.FILE_EXTENSION}`,
   ],
   cli: {
-    entitiesDir: `${MISC.TYPEORM.BASE_DIRECTORY}/entity`,
-    migrationsDir: `${MISC.TYPEORM.BASE_DIRECTORY}/migration`,
-    subscribersDir: `${MISC.TYPEORM.BASE_DIRECTORY}/subscriber`,
+    entitiesDir,
+    migrationsDir,
+    subscribersDir,
   },
 },
 )
