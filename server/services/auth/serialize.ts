@@ -1,7 +1,6 @@
-import { IPublicUser } from '../../../shared/PublicUser'
-import { obfuscateUser } from '../../utils/obfuscateUser'
-import Connection from '../db/connection'
-import { User } from '../db/entity/User'
+import { IPublicUser } from '@shared/PublicUser'
+import Connection from '@server/services/db/connection'
+import { User } from '@server/services/db/entity/User'
 
 const serialize = async (expressUser: Express.User, done: (err: Error | null, id?: string) => void): Promise<void> => {
   const user = expressUser as unknown as IPublicUser
@@ -15,7 +14,7 @@ const deserialize = async (id: string, done: (err: Error | null, user?: Express.
   const connection = await Connection
   const userRepository = connection.getRepository(User)
   const [user] = await userRepository.findByIds([ id ])
-  const obfuscatedUser: IPublicUser = obfuscateUser(user)
+  const obfuscatedUser: IPublicUser = user.sanitizedUser
   done(null, obfuscatedUser)
 }
 

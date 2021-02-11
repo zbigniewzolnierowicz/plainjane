@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn, Tree, TreeChildren, TreeParent } from 'typeorm'
-import { IPost } from '../../../../shared/Post'
+import { IPost } from '@shared/Post'
 
 @Entity()
 @Tree('closure-table')

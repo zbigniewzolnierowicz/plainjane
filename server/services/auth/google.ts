@@ -1,13 +1,13 @@
 import { OAuth2Strategy } from 'passport-google-oauth'
-import Connection from '../db/connection'
-import { User } from '../db/entity/User'
 import fetch from 'node-fetch'
 import { v4 } from 'uuid'
 import { fromBuffer } from 'file-type'
 
-import getEnv from '../../utils/getEnv'
-import { S3 } from '../storage'
-import { MINIO } from '../../consts'
+import Connection from '@server/services/db/connection'
+import { User } from '@server/services/db/entity/User'
+import getEnv from '@server/utils/getEnv'
+import { S3 } from '@server/services/storage'
+import { MINIO } from '@server/consts'
 
 const GOOGLE_CLIENT_ID = getEnv('GOOGLE_CLIENT_ID')
 const GOOGLE_CLIENT_SECRET = getEnv('GOOGLE_CLIENT_SECRET')

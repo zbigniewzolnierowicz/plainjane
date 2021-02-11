@@ -1,5 +1,5 @@
 import { createConnection } from 'typeorm'
-import { MISC, POSTGRES } from '../../consts'
+import { MISC, POSTGRES } from '@server/consts'
 
 const Connection = createConnection({
   type: 'postgres',

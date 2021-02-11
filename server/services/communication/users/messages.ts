@@ -1,4 +1,4 @@
-import { UserMessages, IMessage } from '../../../../shared/Message'
+import { UserMessages, IMessage } from '@shared/Message'
 
 const UserMessageRepository: Record<UserMessages, IMessage> = {
   user_found: {

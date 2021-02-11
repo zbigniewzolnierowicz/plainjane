@@ -1,4 +1,4 @@
-import { AuthMessages, IMessage } from '../../../../shared/Message'
+import { AuthMessages, IMessage } from '@shared/Message'
 
 const AuthMessageRepository: Record<AuthMessages, IMessage> = {
   user_authenticated: {

@@ -1,4 +1,4 @@
-import { AuthErrors, IError } from '../../../../shared/Message'
+import { AuthErrors, IError } from '@shared/Message'
 
 const AuthErrorRepository: Record<AuthErrors, IError> = {
   user_not_authenticated: {

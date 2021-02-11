@@ -8,7 +8,13 @@
     "outDir": "./dist",
     "esModuleInterop": true,
     "strict": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "baseUrl": "./",
+    "paths": {
+      "@client/*": ["client/*"],
+      "@server/*": ["server/*"],
+      "@shared/*": ["shared/*"]
+    }
   },
   "exclude": [
     "./client"

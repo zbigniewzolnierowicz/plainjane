@@ -1,4 +1,4 @@
-import { IError, UserErrors } from '../../../../shared/Message'
+import { IError, UserErrors } from '@shared/Message'
 
 const UserErrorRepository: Record<UserErrors, IError> = {
   same_nickname_multiple_users: {

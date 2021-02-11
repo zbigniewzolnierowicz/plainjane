@@ -1,11 +1,10 @@
 import { Router, Request, Response } from 'express'
-import Connection from '../../../../services/db/connection'
-import { IMessage, IError } from '../../../../../shared/Message'
-import { IPublicUser } from '../../../../../shared/PublicUser'
-import { onlyAuthed } from '../../../../guards/auth'
-import { User } from '../../../../services/db/entity/User'
-import { MESSAGES, formatMessage, ERRORS } from '../../../../services/communication'
-import obfuscateUser from '../../../../utils/obfuscateUser'
+import Connection from '@server/services/db/connection'
+import { IMessage, IError } from '@shared/Message'
+import { IPublicUser } from '@shared/PublicUser'
+import { onlyAuthed } from '@server/guards/auth'
+import { User } from '@server/services/db/entity/User'
+import { MESSAGES, formatMessage, ERRORS } from '@server/services/communication'
 
 const router = Router()
 const LOCAL_ERRORS = ERRORS.users
@@ -31,7 +30,7 @@ router
       const users: User[] = await userRepository.find({ where: { nickname: req.params.nickname } })
       if (users.length == 1) {
         const [user] = users
-        const formattedUser: IPublicUser = obfuscateUser(user)
+        const formattedUser: IPublicUser = user.sanitizedUser
         const message = LOCAL_MESSAGES.user_found
         res
           .status(message.status)

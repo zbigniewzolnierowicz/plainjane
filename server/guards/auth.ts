@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import { ERRORS } from '../services/communication'
+import { ERRORS } from '@server/services/communication'
 
 const LOCAL_ERRORS = ERRORS.auth
 

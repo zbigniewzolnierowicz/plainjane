@@ -26,4 +26,14 @@ export class User implements IPublicUser {
 
   @Column({ nullable: true, type: 'varchar' })
   profile?: string
+
+  get sanitizedUser(): IPublicUser {
+    const { name, nickname, profile, email } = this
+    return {
+      name,
+      nickname,
+      profile,
+      email,
+    }
+  }
 }

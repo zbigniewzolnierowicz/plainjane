@@ -9,7 +9,7 @@ import { StaticRouterContext } from 'react-router'
 import Helmet from 'react-helmet'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
-import App from '../../../client/App'
+import App from '@client/App'
 
 const router = Router()
 

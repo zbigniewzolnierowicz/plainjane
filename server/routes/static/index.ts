@@ -1,5 +1,5 @@
 import { Router, Request } from 'express'
-import { S3 } from '../../services/storage'
+import { S3 } from '@server/services/storage'
 
 const router = Router()
 
