@@ -1,14 +1,14 @@
-interface IBaseMessage<T> {
-  title: T
+interface IBaseMessage<TTitle, TContent = undefined> {
+  title: TTitle
   message: string
+  content?: TContent
 }
 
 export type AuthMessages = 'user_authenticated'
-export type UserMessages = 'user_found'
+export type UserMessages = 'user_found' | 'user_created'
 
-export interface IMessage<T = never> extends IBaseMessage<AuthMessages | UserMessages> {
+export interface IMessage<T = never> extends IBaseMessage<AuthMessages | UserMessages, T> {
   status: 200
-  content?: T
 }
 
 export type AuthMessageRepository = Record<
@@ -23,8 +23,8 @@ export type UserMessageRepository = Record<
 
 export type MessageRepository = AuthMessageRepository & UserMessageRepository
 
-export type AuthErrors = 'user_not_authenticated'
-export type UserErrors = 'same_nickname_multiple_users' | 'user_not_found' | 'incorrect_password'
+export type AuthErrors = 'user_not_authenticated' | 'user_already_authenticated'
+export type UserErrors = 'same_nickname_multiple_users' | 'user_not_found' | 'incorrect_password' | 'user_not_created' | 'bad_body'
 
 export type AuthErrorRepository = Record<
   'auth',
@@ -36,8 +36,8 @@ export type UserErrorRepository = Record<
   Record<UserErrors, IError>
 >
 
-export interface IError extends IBaseMessage<AuthErrors | UserErrors> {
-  status: 404 | 403 | 500
+export interface IError<T = never> extends IBaseMessage<AuthErrors | UserErrors, T> {
+  status: 400 | 404 | 403 | 500
 }
 
 export type ErrorRepository = AuthErrorRepository & UserErrorRepository

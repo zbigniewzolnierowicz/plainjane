@@ -16,6 +16,16 @@ const UserErrorRepository: Record<UserErrors, IError> = {
     message: 'Incorrect password.',
     status: 403,
   },
+  bad_body: {
+    title: 'bad_body',
+    message: 'Malformed request body.',
+    status: 400,
+  },
+  user_not_created: {
+    title: 'user_not_created',
+    message: 'User not created due to a server error.',
+    status: 500,
+  },
 }
 
 export default UserErrorRepository

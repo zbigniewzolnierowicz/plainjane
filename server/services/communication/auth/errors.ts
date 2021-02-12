@@ -6,6 +6,11 @@ const AuthErrorRepository: Record<AuthErrors, IError> = {
     message: 'User was not authenticated. Please, log in.',
     status: 403,
   },
+  user_already_authenticated: {
+    title: 'user_already_authenticated',
+    message: 'User is already logged in.',
+    status: 403,
+  },
 }
 
 export default AuthErrorRepository

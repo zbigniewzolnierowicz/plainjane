@@ -10,3 +10,11 @@ export const onlyAuthed = (req: Request, res: Response, next: NextFunction): voi
   }
   else next()
 }
+
+export const onlyUnauthed = (req: Request, res: Response, next: NextFunction): void => {
+  if (req.user) {
+    const error = LOCAL_ERRORS.user_already_authenticated
+    return res.status(error.status).json(error).end()
+  }
+  else next()
+}
