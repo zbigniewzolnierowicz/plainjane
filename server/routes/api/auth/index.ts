@@ -1,5 +1,7 @@
 import { Router } from 'express'
+
 import { onlyAuthed } from '@server/guards/auth'
+import { MESSAGES } from '@server/services/communication'
 import GoogleRoutes from './google'
 import LocalRoutes from './local'
 import UserRoutes from './user'
@@ -15,7 +17,8 @@ router
     onlyAuthed,
     (req, res) => {
       req.logOut()
-      res.status(200).end()
+      const message = MESSAGES.auth.user_logged_out
+      res.status(message.status).json(message).end()
     },
   )
 

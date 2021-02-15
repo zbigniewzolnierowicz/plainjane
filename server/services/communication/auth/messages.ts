@@ -6,6 +6,11 @@ const AuthMessageRepository: Record<AuthMessages, IMessage<AuthMessages>> = {
     message: 'User has been authenticated.',
     status: EPositiveStatusCodes.OK,
   },
+  [AuthMessages.USER_LOGGED_OUT]: {
+    title: AuthMessages.USER_LOGGED_OUT,
+    message: 'User has been logged out.',
+    status: EPositiveStatusCodes.OK,
+  },
 }
 
 export default AuthMessageRepository

@@ -1,5 +1,6 @@
 export enum AuthMessages {
-  USER_AUTHENTICATED = 'user_authenticated'
+  USER_AUTHENTICATED = 'user_authenticated',
+  USER_LOGGED_OUT = 'user_logged_out'
 }
 export enum UserMessages {
  USER_FOUND = 'user_found',
