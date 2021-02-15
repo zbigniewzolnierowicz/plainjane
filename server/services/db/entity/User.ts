@@ -1,5 +1,4 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
-import { hash } from 'argon2'
 
 import { IPublicUser } from '../../../../shared/PublicUser'
 

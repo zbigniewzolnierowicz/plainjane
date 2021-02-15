@@ -1,6 +1,5 @@
 import { Router, Request, Response } from 'express'
 import Connection from '@server/services/db/connection'
-import { IMessage, IError } from '@shared/Message'
 import { IPublicUser } from '@shared/PublicUser'
 import { onlyAuthed } from '@server/guards/auth'
 import { User } from '@server/services/db/entity/User'
@@ -28,7 +27,7 @@ router
       const connection = await Connection
       const userRepository = connection.getRepository(User)
       const users: User[] = await userRepository.find({ where: { nickname: req.params.nickname } })
-      if (users.length == 1) {
+      if (users.length === 1) {
         const [user] = users
         const formattedUser: IPublicUser = user.sanitizedUser
         const message = LOCAL_MESSAGES.user_found
@@ -38,12 +37,6 @@ router
           .json(
             formattedMessage,
           )
-          .end()
-      } else if (users.length > 1) {
-        const error = LOCAL_ERRORS.same_nickname_multiple_users
-        res
-          .status(error.status)
-          .json(error)
           .end()
       } else {
         const error = LOCAL_ERRORS.user_not_found

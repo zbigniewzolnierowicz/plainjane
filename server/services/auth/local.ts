@@ -4,7 +4,7 @@ import Connection from '../db/connection'
 import { User } from '../db/entity/User'
 import { verify } from 'argon2'
 
-const LocalStrategy = new Strategy(
+const LocalPassportStrategy = new Strategy(
   {
     usernameField: 'username',
     passwordField: 'password',
@@ -25,4 +25,4 @@ const LocalStrategy = new Strategy(
   },
 )
 
-export default LocalStrategy
+export default LocalPassportStrategy

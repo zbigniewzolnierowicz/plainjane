@@ -4,12 +4,14 @@ import cookieParser from 'cookie-parser'
 import passport from 'passport'
 import { createClient } from 'redis'
 import connectRedis from 'connect-redis'
+import bodyParser from 'body-parser'
 
 import GooglePassportStrategy from './services/auth/google'
 import Routes from './routes'
 import { deserialize, serialize } from './services/auth/serialize'
 import { S3 } from './services/storage'
 import { MINIO, MISC, REDIS } from './consts'
+import LocalPassportStrategy from './services/auth/local'
 
 const app = express()
 const PORT = 8000
@@ -31,8 +33,10 @@ async function main() {
     app.use(cookieParser())
     app.use(passport.initialize())
     app.use(passport.session())
+    app.use(bodyParser.json())
 
     passport.use(GooglePassportStrategy)
+    passport.use(LocalPassportStrategy)
     passport.serializeUser(serialize)
     passport.deserializeUser(deserialize)
 

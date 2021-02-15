@@ -43,7 +43,7 @@ export enum AuthErrors {
 }
 
 export enum UserErrors {
-  SAME_NICKNAME_MULTIPLE_USERS = 'same_nickname_multiple_users',
+  USER_ALREADY_EXISTS = 'user_already_exists',
   USER_NOT_FOUND = 'user_not_found',
   INCORRECT_PASSWORD = 'incorrect_password',
   USER_NOT_CREATED = 'user_not_created',

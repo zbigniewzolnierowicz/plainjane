@@ -1,9 +1,9 @@
 import { ENegativeStatusCodes, IError, UserErrors } from '@shared/Message'
 
 const UserErrorRepository: Record<UserErrors, IError<UserErrors>> = {
-  [UserErrors.SAME_NICKNAME_MULTIPLE_USERS]: {
-    title: UserErrors.SAME_NICKNAME_MULTIPLE_USERS,
-    message: 'Multiple users with this nickname.',
+  [UserErrors.USER_ALREADY_EXISTS]: {
+    title: UserErrors.USER_ALREADY_EXISTS,
+    message: 'Multiple users with these parameters exist.',
     status: ENegativeStatusCodes.INTERNAL_SERVER_ERROR,
   },
   [UserErrors.USER_NOT_FOUND]: {
