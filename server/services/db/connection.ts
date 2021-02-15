@@ -1,5 +1,5 @@
 import { createConnection } from 'typeorm'
-import { MISC, POSTGRES } from '@server/consts'
+import { MISC, POSTGRES } from '../../consts'
 
 const entitiesDir = `${MISC.TYPEORM.BASE_DIRECTORY}/entity`
 const migrationsDir = `${MISC.TYPEORM.BASE_DIRECTORY}/migration`
