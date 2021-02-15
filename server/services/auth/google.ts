@@ -5,12 +5,11 @@ import { fromBuffer } from 'file-type'
 
 import Connection from '@server/services/db/connection'
 import { User } from '@server/services/db/entity/User'
-import getEnv from '@server/utils/getEnv'
 import { S3 } from '@server/services/storage'
-import { MINIO } from '@server/consts'
+import { GOOGLE, MINIO } from '@server/consts'
 
-const GOOGLE_CLIENT_ID = getEnv('GOOGLE_CLIENT_ID')
-const GOOGLE_CLIENT_SECRET = getEnv('GOOGLE_CLIENT_SECRET')
+const GOOGLE_CLIENT_ID = GOOGLE.CLIENT_ID
+const GOOGLE_CLIENT_SECRET = GOOGLE.CLIENT_SECRET
 
 const GooglePassportStrategy = new OAuth2Strategy(
   {

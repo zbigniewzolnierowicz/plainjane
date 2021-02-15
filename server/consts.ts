@@ -49,6 +49,16 @@ export const MINIO: IExternalServiceConnectionData & IMinioData = {
   USE_SSL: yn(process.env.MINIO_USE_SSL || true, { default: false, lenient: true }),
 }
 
+export interface IGoogleData {
+  CLIENT_ID: string,
+  CLIENT_SECRET: string,
+}
+
+export const GOOGLE: IGoogleData = {
+  CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
+  CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || '',
+}
+
 export const MISC = {
   SESSION_SECRET: process.env.SESSION_SECRET || 'hocus pocus',
   TYPEORM: {
