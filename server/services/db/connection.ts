@@ -8,7 +8,7 @@ const subscribersDir = `${MISC.TYPEORM.BASE_DIRECTORY}/subscriber`
 const Connection = createConnection({
   type: 'postgres',
   host: POSTGRES.HOST,
-  port: POSTGRES.PORT,
+  port: Number(POSTGRES.PORT),
   username: POSTGRES.USERNAME,
   password: POSTGRES.PASSWORD,
   database: POSTGRES.DATABASE,
