@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { hash } from 'argon2'
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 import { IPublicUser } from '../../../../shared/PublicUser'
 
@@ -27,6 +28,13 @@ export class User implements IPublicUser {
 
   @Column({ nullable: true, type: 'varchar' })
   profile?: string
+
+  @BeforeInsert()
+  async setPassword(password?: string): Promise<void> {
+    if (this.password) {
+      this.password = await hash(password || this.password)
+    }
+  }
 
   get sanitizedUser(): IPublicUser {
     const { name, nickname, profile, email } = this

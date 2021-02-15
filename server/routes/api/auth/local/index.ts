@@ -3,7 +3,6 @@ import { ERRORS, formatMessage, MESSAGES } from '@server/services/communication'
 import Connection from '@server/services/db/connection'
 import { User } from '@server/services/db/entity/User'
 import { IError } from '@shared/Message'
-import { hash } from 'argon2'
 import { Request, Response, Router } from 'express'
 import passport from 'passport'
 
@@ -31,9 +30,8 @@ router.post('/register',
       if (!(req.body.email && req.body.name && req.body.password && req.body.nickname)) throw ERRORS.generic.bad_request
       const connection = await Connection
       const userRepository = connection.getRepository(User)
-      const { email, name, password: unhashedPassword, nickname } = req.body
+      const { email, name, password, nickname } = req.body
       const newUser = new User()
-      const password = await hash(unhashedPassword)
       Object.assign(newUser, { email, name, password, nickname })
       const user = await userRepository.save(newUser)
       const newUserMessage = formatMessage(MESSAGES.users.user_created, user.sanitizedUser)
