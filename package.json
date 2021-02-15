@@ -21,7 +21,8 @@
     "lint": "eslint --fix \"**/*.{ts,tsx}\"",
     "depcheck": "depcheck --ignores=\"@types/*,body-parser,pg,ts-node,depcheck\" --ignore-patterns=build/*,node_modules",
     "e2e": "run-p dev cypress:open",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "typeorm:cli": "ts-node ./node_modules/typeorm/cli -f ./server/services/db/config.ts"
   },
   "dependencies": {
     "argon2": "^0.27.1",
