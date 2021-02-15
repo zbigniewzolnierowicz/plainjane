@@ -2,9 +2,28 @@ export enum AuthMessages {
   USER_AUTHENTICATED = 'user_authenticated',
   USER_LOGGED_OUT = 'user_logged_out'
 }
+
+export enum AuthErrors {
+  NOT_AUTHENTICATED = 'user_not_authenticated',
+  ALREADY_AUTHENTICATED = 'user_already_authenticated'
+}
+
 export enum UserMessages {
  USER_FOUND = 'user_found',
  USER_CREATED = 'user_created'
+}
+
+export enum UserErrors {
+  USER_ALREADY_EXISTS = 'user_already_exists',
+  USER_NOT_FOUND = 'user_not_found',
+  INCORRECT_PASSWORD = 'incorrect_password',
+  USER_NOT_CREATED = 'user_not_created',
+}
+
+export enum GenericMessages {}
+
+export enum GenericErrors {
+  BAD_REQUEST = 'bad_request'
 }
 
 export enum EPositiveStatusCodes {
@@ -26,6 +45,10 @@ interface IBaseMessage<TTitle, TContent = undefined, TStatus = EPositiveStatusCo
   status: TStatus
 }
 
+export type IMessage<TTitle = AuthMessages & UserMessages, TContent = never> = IBaseMessage<TTitle, TContent, EPositiveStatusCodes>
+
+export type IError<TTitle = AuthErrors & UserErrors, TContent = never> = IBaseMessage<TTitle, TContent, ENegativeStatusCodes>
+
 export type AuthMessageRepository = Record<
   'auth',
   Record<AuthMessages, IMessage<AuthMessages>>
@@ -36,23 +59,12 @@ export type UserMessageRepository = Record<
   Record<UserMessages, IMessage<UserMessages>>
 >
 
-export type MessageRepository = AuthMessageRepository & UserMessageRepository
+export type GenericMessageRepository = Record<
+  'generic',
+  Record<GenericMessages, IMessage<GenericMessages>>
+>
 
-export enum AuthErrors {
-  NOT_AUTHENTICATED = 'user_not_authenticated',
-  ALREADY_AUTHENTICATED = 'user_already_authenticated'
-}
-
-export enum UserErrors {
-  USER_ALREADY_EXISTS = 'user_already_exists',
-  USER_NOT_FOUND = 'user_not_found',
-  INCORRECT_PASSWORD = 'incorrect_password',
-  USER_NOT_CREATED = 'user_not_created',
-  BAD_BODY = 'bad_body'
-}
-
-export type IMessage<TTitle = AuthMessages & UserMessages, TContent = never> = IBaseMessage<TTitle, TContent, EPositiveStatusCodes>
-export type IError<TTitle = AuthErrors & UserErrors, TContent = never> = IBaseMessage<TTitle, TContent, ENegativeStatusCodes>
+export type MessageRepository = AuthMessageRepository & UserMessageRepository & GenericMessageRepository
 
 export type AuthErrorRepository = Record<
   'auth',
@@ -64,4 +76,9 @@ export type UserErrorRepository = Record<
   Record<UserErrors, IError<UserErrors>>
 >
 
-export type ErrorRepository = AuthErrorRepository & UserErrorRepository
+export type GenericErrorRepository = Record<
+  'generic',
+  Record<GenericErrors, IError<GenericErrors>>
+>
+
+export type ErrorRepository = AuthErrorRepository & UserErrorRepository & GenericErrorRepository

@@ -16,11 +16,6 @@ const UserErrorRepository: Record<UserErrors, IError<UserErrors>> = {
     message: 'Incorrect password.',
     status: ENegativeStatusCodes.FORBIDDEN,
   },
-  [UserErrors.BAD_BODY]: {
-    title: UserErrors.BAD_BODY,
-    message: 'Malformed request body.',
-    status: ENegativeStatusCodes.BAD_REQUEST,
-  },
   [UserErrors.USER_NOT_CREATED]: {
     title: UserErrors.USER_NOT_CREATED,
     message: 'User not created due to a server error.',

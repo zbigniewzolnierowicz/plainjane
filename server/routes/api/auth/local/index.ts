@@ -10,7 +10,14 @@ import passport from 'passport'
 const router = Router()
 
 router.post('/',
-  passport.authenticate('local', { failureRedirect: '/' }),
+  (req, res, next) => {
+    if (req.body.username && req.body.password) {
+      passport.authenticate('local')(req, res, next)
+    } else {
+      const message = ERRORS.generic.bad_request
+      res.status(message.status).json(message).end()
+    }
+  },
   (_req, res) => {
     const message = MESSAGES.auth.user_authenticated
     res.status(message.status).json(message).end()
@@ -21,7 +28,7 @@ router.post('/register',
   onlyUnauthed,
   async (req: Request<never, never, { name: string, nickname: string, email: string, password: string }>, res: Response) => {
     try {
-      if (!(req.body.email && req.body.name && req.body.password && req.body.nickname)) throw ERRORS.users.bad_body
+      if (!(req.body.email && req.body.name && req.body.password && req.body.nickname)) throw ERRORS.generic.bad_request
       const connection = await Connection
       const userRepository = connection.getRepository(User)
       const { email, name, password: unhashedPassword, nickname } = req.body
