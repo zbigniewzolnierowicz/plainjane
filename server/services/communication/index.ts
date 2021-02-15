@@ -1,10 +1,10 @@
-import { IMessage, ErrorRepository, MessageRepository } from '../../../shared/Message'
+import { IMessage, ErrorRepository, MessageRepository, UserMessages, AuthMessages } from '../../../shared/Message'
 import AuthErrorRepository from './auth/errors'
 import AuthMessageRepository from './auth/messages'
 import UserErrorRepository from './users/errors'
 import UserMessageRepository from './users/messages'
 
-const formatMessage = <T>(message: IMessage<T>, content: T): IMessage<T> => ({ ...message, content })
+const formatMessage = <T = string, TTitle = AuthMessages | UserMessages>(message: IMessage<TTitle, T>, content: T): IMessage<TTitle, T> => ({ ...message, content })
 
 export const ERRORS: ErrorRepository = {
   auth: AuthErrorRepository,

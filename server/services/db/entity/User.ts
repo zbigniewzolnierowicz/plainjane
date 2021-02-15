@@ -38,17 +38,4 @@ export class User implements IPublicUser {
       email,
     }
   }
-
-  constructor(partialUser: Partial<User>) {
-    const { password: unhashedPassword, ...data } = partialUser
-    let password: string | undefined
-    if (unhashedPassword) {
-      hash(unhashedPassword).then(hashedPassword => {
-        password = hashedPassword
-      })
-    } else {
-      password = undefined
-    }
-    Object.assign(this, { ...data, password })
-  }
 }

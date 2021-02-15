@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 import useSWR from 'swr'
 
 import { IPublicUser } from '../../shared/PublicUser'
-import { IError, IMessage } from '../../shared/Message'
+import { IError, IMessage, UserMessages } from '../../shared/Message'
 import fetcher from '../utils/fetcher'
 import styled from 'styled-components'
 
@@ -38,7 +38,7 @@ const ProfileEmail = styled.p`
 const Profile: React.FC = () => {
   const { nickname } = useParams<IProfilePathParams>()
   const userDataPath = nickname ? `/api/auth/user/${nickname}` : '/api/auth/user'
-  const { data, error } = useSWR<IMessage<IPublicUser>, IError>(userDataPath, fetcher, { refreshInterval: 600000 })
+  const { data, error } = useSWR<IMessage<UserMessages, IPublicUser>, IError>(userDataPath, fetcher, { refreshInterval: 600000 })
   return (
     <div>
       <h1>User Data</h1>

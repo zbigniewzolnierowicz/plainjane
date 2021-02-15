@@ -24,7 +24,7 @@ router
 router
   .get('/:nickname',
     onlyAuthed,
-    async (req: Request<{ nickname: string }>, res: Response<IMessage<IPublicUser> | IError>) => {
+    async (req: Request<{ nickname: string }>, res: Response) => {
       const connection = await Connection
       const userRepository = connection.getRepository(User)
       const users: User[] = await userRepository.find({ where: { nickname: req.params.nickname } })
@@ -32,10 +32,11 @@ router
         const [user] = users
         const formattedUser: IPublicUser = user.sanitizedUser
         const message = LOCAL_MESSAGES.user_found
+        const formattedMessage = formatMessage(message, formattedUser)
         res
           .status(message.status)
           .json(
-            formatMessage(message, formattedUser),
+            formattedMessage,
           )
           .end()
       } else if (users.length > 1) {

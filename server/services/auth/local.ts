@@ -2,6 +2,7 @@ import { Strategy } from 'passport-local'
 import UserErrorRepository from '../communication/users/errors'
 import Connection from '../db/connection'
 import { User } from '../db/entity/User'
+import { verify } from 'argon2'
 
 const LocalStrategy = new Strategy(
   {
@@ -13,7 +14,7 @@ const LocalStrategy = new Strategy(
     const userRepository = connection.getRepository(User)
     const potentialUser = await userRepository.findOne({ where: { nickname } })
     if (potentialUser) {
-      if (potentialUser.password === password) {
+      if (potentialUser.password && verify(potentialUser.password, password)) {
         done(null, potentialUser)
       } else {
         done(UserErrorRepository.incorrect_password)

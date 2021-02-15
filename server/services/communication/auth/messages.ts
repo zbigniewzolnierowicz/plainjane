@@ -1,8 +1,8 @@
 import { AuthMessages, EPositiveStatusCodes, IMessage } from '@shared/Message'
 
 const AuthMessageRepository: Record<AuthMessages, IMessage<AuthMessages>> = {
-  user_authenticated: {
-    title: 'user_authenticated',
+  [AuthMessages.USER_AUTHENTICATED]: {
+    title: AuthMessages.USER_AUTHENTICATED,
     message: 'User has been authenticated.',
     status: EPositiveStatusCodes.OK,
   },

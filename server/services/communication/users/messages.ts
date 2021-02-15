@@ -1,13 +1,13 @@
 import { UserMessages, IMessage, EPositiveStatusCodes } from '@shared/Message'
 
 const UserMessageRepository: Record<UserMessages, IMessage<UserMessages>> = {
-  user_found: {
-    title: 'user_found',
+  [UserMessages.USER_FOUND]: {
+    title: UserMessages.USER_FOUND,
     message: 'User has been found.',
     status: EPositiveStatusCodes.OK,
   },
-  user_created: {
-    title: 'user_created',
+  [UserMessages.USER_CREATED]: {
+    title: UserMessages.USER_CREATED,
     message: 'User has been created.',
     status: EPositiveStatusCodes.CREATED,
   },

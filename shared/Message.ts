@@ -1,5 +1,10 @@
-export type AuthMessages = 'user_authenticated'
-export type UserMessages = 'user_found' | 'user_created'
+export enum AuthMessages {
+  USER_AUTHENTICATED = 'user_authenticated'
+}
+export enum UserMessages {
+ USER_FOUND = 'user_found',
+ USER_CREATED = 'user_created'
+}
 
 export enum EPositiveStatusCodes {
   OK = 200,
@@ -20,32 +25,42 @@ interface IBaseMessage<TTitle, TContent = undefined, TStatus = EPositiveStatusCo
   status: TStatus
 }
 
-export type IMessage<TTitle = AuthMessages | UserMessages, TContent = never> = IBaseMessage<TTitle, TContent, EPositiveStatusCodes>
-export type IError<TTitle = AuthErrors | UserErrors, TContent = never> = IBaseMessage<TTitle, TContent, ENegativeStatusCodes>
-
 export type AuthMessageRepository = Record<
   'auth',
-  Record<AuthMessages, IMessage>
+  Record<AuthMessages, IMessage<AuthMessages>>
 >
 
 export type UserMessageRepository = Record<
   'users',
-  Record<UserMessages, IMessage>
+  Record<UserMessages, IMessage<UserMessages>>
 >
 
 export type MessageRepository = AuthMessageRepository & UserMessageRepository
 
-export type AuthErrors = 'user_not_authenticated' | 'user_already_authenticated'
-export type UserErrors = 'same_nickname_multiple_users' | 'user_not_found' | 'incorrect_password' | 'user_not_created' | 'bad_body'
+export enum AuthErrors {
+  NOT_AUTHENTICATED = 'user_not_authenticated',
+  ALREADY_AUTHENTICATED = 'user_already_authenticated'
+}
+
+export enum UserErrors {
+  SAME_NICKNAME_MULTIPLE_USERS = 'same_nickname_multiple_users',
+  USER_NOT_FOUND = 'user_not_found',
+  INCORRECT_PASSWORD = 'incorrect_password',
+  USER_NOT_CREATED = 'user_not_created',
+  BAD_BODY = 'bad_body'
+}
+
+export type IMessage<TTitle = AuthMessages & UserMessages, TContent = never> = IBaseMessage<TTitle, TContent, EPositiveStatusCodes>
+export type IError<TTitle = AuthErrors & UserErrors, TContent = never> = IBaseMessage<TTitle, TContent, ENegativeStatusCodes>
 
 export type AuthErrorRepository = Record<
   'auth',
-  Record<AuthErrors, IError>
+  Record<AuthErrors, IError<AuthErrors>>
 >
 
 export type UserErrorRepository = Record<
   'users',
-  Record<UserErrors, IError>
+  Record<UserErrors, IError<UserErrors>>
 >
 
 export type ErrorRepository = AuthErrorRepository & UserErrorRepository
