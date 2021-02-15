@@ -3,12 +3,12 @@ import { ENegativeStatusCodes, TUserErrorRepository, UserErrors } from '@shared/
 const UserErrorRepository: TUserErrorRepository = {
   [UserErrors.USER_ALREADY_EXISTS]: {
     title: UserErrors.USER_ALREADY_EXISTS,
-    message: 'Multiple users with these parameters exist.',
+    message: 'User with these parameters exists already.',
     status: ENegativeStatusCodes.INTERNAL_SERVER_ERROR,
   },
   [UserErrors.USER_NOT_FOUND]: {
     title: UserErrors.USER_NOT_FOUND,
-    message: 'User with the following nickname was not found.',
+    message: 'User with the following username was not found.',
     status: ENegativeStatusCodes.NOT_FOUND,
   },
   [UserErrors.INCORRECT_PASSWORD]: {

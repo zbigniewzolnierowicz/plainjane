@@ -3,10 +3,10 @@ import Connection from '@server/services/db/connection'
 import { User } from '@server/services/db/entity/User'
 
 const serialize = async (expressUser: Express.User, done: (err: Error | null, id?: string) => void): Promise<void> => {
-  const user = expressUser as unknown as IPublicUser
+  const { username } = expressUser as unknown as IPublicUser
   const connection = await Connection
   const userRepository = connection.getRepository(User)
-  const [foundUser] = await userRepository.find({ where: { nickname: user.nickname } })
+  const [foundUser] = await userRepository.find({ where: { username } })
   done(null, foundUser.id)
 }
 

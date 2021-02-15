@@ -8,7 +8,7 @@ import fetcher from '../utils/fetcher'
 import styled from 'styled-components'
 
 interface IProfilePathParams {
-  nickname?: string
+  username?: string
 }
 
 const ProfileWrapper = styled.div`
@@ -36,13 +36,13 @@ const ProfileEmail = styled.p`
 `
 
 const Profile: React.FC = () => {
-  const { nickname } = useParams<IProfilePathParams>()
-  const userDataPath = nickname ? `/api/auth/user/${nickname}` : '/api/auth/user'
+  const { username } = useParams<IProfilePathParams>()
+  const userDataPath = username ? `/api/auth/user/${username}` : '/api/auth/user'
   const { data, error } = useSWR<IMessage<UserMessages, IPublicUser>, IError>(userDataPath, fetcher, { refreshInterval: 600000 })
   return (
     <div>
       <h1>User Data</h1>
-      <p>{nickname}</p>
+      <p>{username}</p>
       <a href="/api/auth/google">Log in</a>
       <a href="/api/auth/logout">Log out</a>
       {data ? (

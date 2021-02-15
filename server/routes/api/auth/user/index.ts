@@ -21,12 +21,12 @@ router
   )
 
 router
-  .get('/:nickname',
+  .get('/:username',
     onlyAuthed,
-    async (req: Request<{ nickname: string }>, res: Response) => {
+    async (req: Request<{ username: string }>, res: Response) => {
       const connection = await Connection
       const userRepository = connection.getRepository(User)
-      const users: User[] = await userRepository.find({ where: { nickname: req.params.nickname } })
+      const users: User[] = await userRepository.find({ where: { username: req.params.username } })
       if (users.length === 1) {
         const [user] = users
         const formattedUser: IPublicUser = user.sanitizedUser

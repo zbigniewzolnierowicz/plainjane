@@ -25,14 +25,14 @@ router.post('/',
 
 router.post('/register',
   onlyUnauthed,
-  async (req: Request<never, never, { name: string, nickname: string, email: string, password: string }>, res: Response) => {
+  async (req: Request<never, never, { name: string, username: string, email: string, password: string }>, res: Response) => {
     try {
-      if (!(req.body.email && req.body.name && req.body.password && req.body.nickname)) throw ERRORS.generic.bad_request
+      const { email, name, password, username } = req.body
+      if (!(email && name && password && username)) throw ERRORS.generic.bad_request
       const connection = await Connection
       const userRepository = connection.getRepository(User)
-      const { email, name, password, nickname } = req.body
       const newUser = new User()
-      Object.assign(newUser, { email, name, password, nickname })
+      Object.assign(newUser, { email, name, password, username })
       const user = await userRepository.save(newUser)
       const newUserMessage = formatMessage(MESSAGES.users.user_created, user.sanitizedUser)
       res.status(newUserMessage.status).json(newUserMessage).end()

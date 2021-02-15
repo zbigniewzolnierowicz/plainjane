@@ -27,7 +27,7 @@ const GooglePassportStrategy = new OAuth2Strategy(
       potentialUser = new User()
       potentialUser.googleId = profile.id
       potentialUser.name = profile.displayName
-      potentialUser.nickname = generatedNickname.join('-')
+      potentialUser.username = generatedNickname.join('-')
       potentialUser.email = profile.emails?.[0].value
       if (profile.photos) {
         const photo = await fetch(profile.photos[0].value).then(res => res.buffer())

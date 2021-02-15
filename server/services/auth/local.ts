@@ -9,10 +9,10 @@ const LocalPassportStrategy = new Strategy(
     usernameField: 'username',
     passwordField: 'password',
   },
-  async function(nickname, password, done) {
+  async function(username, password, done) {
     const connection = await Connection
     const userRepository = connection.getRepository(User)
-    const potentialUser = await userRepository.findOne({ where: { nickname } })
+    const potentialUser = await userRepository.findOne({ where: { username } })
     if (potentialUser) {
       if (potentialUser.password && verify(potentialUser.password, password)) {
         done(null, potentialUser)

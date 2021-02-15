@@ -12,7 +12,7 @@ const TypeORMConfig: ConnectionOptions = {
   username: POSTGRES.USERNAME,
   password: POSTGRES.PASSWORD,
   database: POSTGRES.DATABASE,
-  synchronize: process.env.NODE_ENV !== 'production',
+  synchronize: false,
   logging: false,
   entities: [
     `${entitiesDir}/**/*.${MISC.TYPEORM.FILE_EXTENSION}`,

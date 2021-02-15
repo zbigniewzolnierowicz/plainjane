@@ -27,7 +27,7 @@ const App: React.FC = () => {
       <GlobalStyle />
       <Switch>
         <Route exact path="/user/" component={Profile} />
-        <Route path="/user/:nickname" component={Profile} />
+        <Route path="/user/:username" component={Profile} />
         <Route path="/" component={Root} />
       </Switch>
     </>

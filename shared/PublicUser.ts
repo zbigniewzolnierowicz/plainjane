@@ -1,6 +1,6 @@
 export interface IPublicUser {
   name: string
-  nickname: string
+  username: string
   email?: string
   profile?: string
 }
