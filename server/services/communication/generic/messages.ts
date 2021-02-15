@@ -1,5 +1,5 @@
-import { GenericMessages, /* ENegativeStatusCodes, */ IMessage } from '@shared/Message'
+import { TGenericMessageRepository/*, ENegativeStatusCodes */ } from '@shared/Message'
 
-const GenericMessageRepository: Record<GenericMessages, IMessage<GenericMessages>> = {}
+const GenericMessageRepository: TGenericMessageRepository = {}
 
 export default GenericMessageRepository

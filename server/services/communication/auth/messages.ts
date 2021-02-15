@@ -1,6 +1,6 @@
-import { AuthMessages, EPositiveStatusCodes, IMessage } from '@shared/Message'
+import { TAuthMessageRepository, AuthMessages, EPositiveStatusCodes } from '@shared/Message'
 
-const AuthMessageRepository: Record<AuthMessages, IMessage<AuthMessages>> = {
+const AuthMessageRepository: TAuthMessageRepository = {
   [AuthMessages.USER_AUTHENTICATED]: {
     title: AuthMessages.USER_AUTHENTICATED,
     message: 'User has been authenticated.',

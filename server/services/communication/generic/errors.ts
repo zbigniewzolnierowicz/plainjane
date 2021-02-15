@@ -1,6 +1,6 @@
-import { GenericErrors, ENegativeStatusCodes, IError } from '@shared/Message'
+import { GenericErrors, ENegativeStatusCodes, TGenericErrorRepository } from '@shared/Message'
 
-const GenericErrorRepository: Record<GenericErrors, IError<GenericErrors>> = {
+const GenericErrorRepository: TGenericErrorRepository = {
   [GenericErrors.BAD_REQUEST]: {
     title: GenericErrors.BAD_REQUEST,
     message: 'Malformed request body.',

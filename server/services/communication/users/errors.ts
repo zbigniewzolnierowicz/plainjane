@@ -1,6 +1,6 @@
-import { ENegativeStatusCodes, IError, UserErrors } from '@shared/Message'
+import { ENegativeStatusCodes, TUserErrorRepository, UserErrors } from '@shared/Message'
 
-const UserErrorRepository: Record<UserErrors, IError<UserErrors>> = {
+const UserErrorRepository: TUserErrorRepository = {
   [UserErrors.USER_ALREADY_EXISTS]: {
     title: UserErrors.USER_ALREADY_EXISTS,
     message: 'Multiple users with these parameters exist.',

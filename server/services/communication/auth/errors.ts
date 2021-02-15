@@ -1,6 +1,6 @@
-import { AuthErrors, ENegativeStatusCodes, IError } from '@shared/Message'
+import { TAuthErrorRepository, AuthErrors, ENegativeStatusCodes } from '@shared/Message'
 
-const AuthErrorRepository: Record<AuthErrors, IError<AuthErrors>> = {
+const AuthErrorRepository: TAuthErrorRepository = {
   [AuthErrors.NOT_AUTHENTICATED]: {
     title: AuthErrors.NOT_AUTHENTICATED,
     message: 'User was not authenticated. Please, log in.',

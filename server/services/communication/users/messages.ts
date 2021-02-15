@@ -1,6 +1,6 @@
-import { UserMessages, IMessage, EPositiveStatusCodes } from '@shared/Message'
+import { UserMessages, TUserMessageRepository, EPositiveStatusCodes } from '@shared/Message'
 
-const UserMessageRepository: Record<UserMessages, IMessage<UserMessages>> = {
+const UserMessageRepository: TUserMessageRepository = {
   [UserMessages.USER_FOUND]: {
     title: UserMessages.USER_FOUND,
     message: 'User has been found.',

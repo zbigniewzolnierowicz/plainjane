@@ -49,36 +49,22 @@ export type IMessage<TTitle = AuthMessages & UserMessages, TContent = never> = I
 
 export type IError<TTitle = AuthErrors & UserErrors, TContent = never> = IBaseMessage<TTitle, TContent, ENegativeStatusCodes>
 
-export type AuthMessageRepository = Record<
-  'auth',
-  Record<AuthMessages, IMessage<AuthMessages>>
->
+export type TAuthMessageRepository = Record<AuthMessages, IMessage<AuthMessages>>
+export type TUserMessageRepository = Record<UserMessages, IMessage<UserMessages>>
+export type TGenericMessageRepository = Record<GenericMessages, IMessage<GenericMessages>>
 
-export type UserMessageRepository = Record<
-  'users',
-  Record<UserMessages, IMessage<UserMessages>>
->
+export interface IMessageRepository {
+  auth: TAuthMessageRepository,
+  users: TUserMessageRepository
+  generic: TGenericMessageRepository
+}
 
-export type GenericMessageRepository = Record<
-  'generic',
-  Record<GenericMessages, IMessage<GenericMessages>>
->
+export type TAuthErrorRepository = Record<AuthErrors, IError<AuthErrors>>
+export type TUserErrorRepository = Record<UserErrors, IError<UserErrors>>
+export type TGenericErrorRepository = Record<GenericErrors, IError<GenericErrors>>
 
-export type MessageRepository = AuthMessageRepository & UserMessageRepository & GenericMessageRepository
-
-export type AuthErrorRepository = Record<
-  'auth',
-  Record<AuthErrors, IError<AuthErrors>>
->
-
-export type UserErrorRepository = Record<
-  'users',
-  Record<UserErrors, IError<UserErrors>>
->
-
-export type GenericErrorRepository = Record<
-  'generic',
-  Record<GenericErrors, IError<GenericErrors>>
->
-
-export type ErrorRepository = AuthErrorRepository & UserErrorRepository & GenericErrorRepository
+export interface IErrorRepository {
+  auth: TAuthErrorRepository,
+  users: TUserErrorRepository
+  generic: TGenericErrorRepository
+}
