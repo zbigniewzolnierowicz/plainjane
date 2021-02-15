@@ -18,7 +18,6 @@ if (process.env.NODE_ENV === 'production') {
   ReactDOM.render(app, element)
 }
 
-// Hot reload is that easy with Parcel
 // @ts-ignore
 if (module.hot) {
   // @ts-ignore

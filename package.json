@@ -12,10 +12,10 @@
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=production node dist/server/main.js",
-    "dev": "npm-run-all --parallel dev:client dev:server",
-    "dev:server": "ts-node-dev -r tsconfig-paths/register server/main.ts",
+    "dev": "run-p dev:client dev:server",
+    "dev:server": "tsnd -r tsconfig-paths/register server/main.ts",
     "dev:client": "parcel watch client/index.html",
-    "build": "npm-run-all build:server build:client",
+    "build": "run-s build:server build:client",
     "build:server": "tsc",
     "build:client": "parcel build client/index.html",
     "lint": "eslint --fix \"**/*.{ts,tsx}\"",
