@@ -35,6 +35,8 @@ const ProfileEmail = styled.p`
   grid-row: 2 / -1;
 `
 
+const LOGOUT_REDIRECT = '/user'
+
 const Profile: React.FC = () => {
   const { username } = useParams<IProfilePathParams>()
   const userDataPath = username ? `/api/auth/user/${username}` : '/api/auth/user'
@@ -44,7 +46,7 @@ const Profile: React.FC = () => {
       <h1>User Data</h1>
       <p>{username}</p>
       <a href="/api/auth/google">Log in</a>
-      <a href="/api/auth/logout">Log out</a>
+      <a href={`/api/auth/logout?redirect=${LOGOUT_REDIRECT}`}>Log out</a>
       {data ? (
         <ProfileWrapper>
           <img src={`/static/avatars/${data.content?.profile}`} alt={data.content?.name} />

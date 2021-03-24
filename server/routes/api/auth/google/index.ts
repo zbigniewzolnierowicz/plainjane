@@ -8,7 +8,9 @@ router.get('/',
 )
 
 router.get('/callback',
-  passport.authenticate('google', { failureRedirect: '/', successRedirect: '/' }),
+  async function (req, res, next) {
+    passport.authenticate('google', { failureRedirect: '/user?error', successRedirect: '/user' })(req, res, next)
+  },
 )
 
 export default router
