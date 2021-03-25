@@ -8,8 +8,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
-  body {
-    background: skyblue;
+  h1, h2, h3, h4, h5, p {
+    margin: 0;
   }
 `
 

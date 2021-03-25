@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { useParams } from 'react-router'
-import useSWR from 'swr'
 
 import { IPublicUser } from '../../shared/PublicUser'
-import { IError, IMessage, UserMessages } from '../../shared/Message'
-import fetcher from '../utils/fetcher'
+import { useSelector } from 'react-redux'
+
 import styled from 'styled-components'
+import { RootState } from '@client/store'
 
 interface IProfilePathParams {
   username?: string
@@ -39,28 +39,19 @@ const LOGOUT_REDIRECT = '/user'
 
 const Profile: React.FC = () => {
   const { username } = useParams<IProfilePathParams>()
-  const userDataPath = username ? `/api/auth/user/${username}` : '/api/auth/user'
-  const { data, error } = useSWR<IMessage<UserMessages, IPublicUser>, IError>(userDataPath, fetcher, { refreshInterval: 600000 })
+  const user = useSelector<RootState, IPublicUser | undefined>(({ user }) => user.user)
   return (
     <div>
       <h1>User Data</h1>
       <p>{username}</p>
-      <a href="/api/auth/google">Log in</a>
-      <a href={`/api/auth/logout?redirect=${LOGOUT_REDIRECT}`}>Log out</a>
-      {data ? (
-        <ProfileWrapper>
-          <img src={`/static/avatars/${data.content?.profile}`} alt={data.content?.name} />
-          <ProfileName>{data.content?.name}</ProfileName>
-          <ProfileEmail>{data.content?.email}</ProfileEmail>
-        </ProfileWrapper>
-      ) : error ? (
-        <pre>
-          ERROR
-          {JSON.stringify(error, null, 2)}
-        </pre>
+      {user ? (
+        <a href={`/api/auth/logout?redirect=${LOGOUT_REDIRECT}`}>Log out</a>
       ) : (
-        <div>Loading...</div>
+        <a href="/api/auth/google">Log in</a>
       )}
+      <pre>
+        {JSON.stringify(user, null, 2)}
+      </pre>
     </div>
   )
 }
